@@ -20,6 +20,13 @@ export class PokemonService {
     );
   }
 
+  getPokemonDetails(id: string) {
+    return this.http.get<any>(`${this.apiUrl}/${id}`).pipe(
+      tap(() => console.log('Requisição GET bem-sucedida!')),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('Um erro ocorreu:', error.error.message);

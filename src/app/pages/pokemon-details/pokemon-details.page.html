@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ pokemon?.name | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="pokemon">
+  <ion-card>
+    <img [src]="pokemon.sprites?.other?.['official-artwork']?.front_default" [alt]="pokemon.name" />
+
+    <ion-card-header>
+      <ion-card-title>{{ pokemon.name | titlecase }} Nº: {{ pokemon.id }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>Height:</strong> {{ pokemon.height / 10 }} m</p>
+      <p><strong>Weight:</strong> {{ pokemon.weight / 10 }} kg</p>
+      <p><strong>Base Experience:</strong> {{ pokemon.base_experience }}</p>
+
+      <p><strong>Types:</strong></p>
+      <ion-chip color="primary" *ngFor="let type of pokemon.types">
+        {{ type.type.name }}
+      </ion-chip>
+
+      <p><strong>Abilities:</strong></p>
+      <ion-chip color="secondary" *ngFor="let ability of pokemon.abilities">
+        {{ ability.ability.name }}
+      </ion-chip>
+
+      <p><strong>Sprites:</strong></p>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="4">
+            <img [src]="pokemon.sprites?.front_default" />
+          </ion-col>
+          <ion-col size="4">
+            <img [src]="pokemon.sprites?.back_default" />
+          </ion-col>
+          <ion-col size="4">
+            <img [src]="pokemon.sprites?.front_shiny" />
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
