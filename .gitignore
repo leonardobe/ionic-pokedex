@@ -76,3 +76,6 @@ Thumbs.db
 # Prettier config
 .prettierrc
 .prettierignore
+
+#Test files
+*.spec.ts
